@@ -1,5 +1,3 @@
-# BULC2015
-Python Code
 def alignment(string1, string2):
 	i, j = 0, 0
 	string1 = '_' + string1
