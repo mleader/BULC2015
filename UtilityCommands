@@ -1,0 +1,18 @@
+# To time the sorting functions on a random set of 10000 numbers, do the following
+# recall that in Fib_Sort, sort_2 is the bubble sort algorithm and sort is the merge sort algorithm
+ 
+import random
+import timeit
+A=random.sample(range(1,100000),10000)
+timeit.timeit('import Fib_Sort; Fib_Sort.sort_2(A)',setup="from __main__ import A",number=1)
+timeit.timeit('import Fib_Sort; Fib_Sort.sort(A)',setup="from __main__ import A",number=1)
+ 
+# If you want to print the list after every iteration in the bubble
+#  sort algorithm, add the line "print list" in the same indentation as
+#  the inner "for" loop for function sort_2. Then, reload(Fib_Sort) and rerun sort_2
+ 
+# To time the two different variants of the programs for computing the nth Fibonacci number (say n=25), do the following
+ 
+import timeit
+timeit.timeit('import Fib_Sort;Fib_Sort.f(25)')
+timeit.timeit('import Fib_Sort;Fib_Sort.fib(25)')
