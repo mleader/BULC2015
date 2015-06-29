@@ -1,0 +1,7 @@
+def time_execution(code):
+    import time
+    start = time.clock()
+    result = eval(code)
+    run_time = time.clock() - start
+    print result
+    return str(run_time) + ' seconds'
