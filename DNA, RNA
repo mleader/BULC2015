@@ -1,0 +1,69 @@
+#This should be most of the code. I didn't write one for RNA to protein, but I think you could figure 
+#that out relatively easy, since you have the code for RNA to DNA and DNA to protein.
+ 
+ 
+def DNA_other_strand(string):
+    result = ''
+    for character in string:
+        if character == 'A' or character == 'a':
+            result = result + 'T'
+        elif character == 'T' or character == 't':
+            result = result + 'A'
+        elif character == 'G' or character == 'g':
+            result = result + 'C'
+        elif character == 'C' or character == 'c':
+            result = result + 'G'
+        else:
+            return "error, unknown codon"
+    return result
+ 
+def DNA_RNA(string):
+    result = ''
+    for character in string:
+        if character == 'A' or character == 'a':
+            result = result + 'U'
+        elif character == 'T' or character == 't':
+            result = result + 'A'
+        elif character == 'G' or character == 'g':
+            result = result + 'C'
+        elif character == 'C' or character == 'c':
+            result = result + 'G'
+        else:
+            return "error, unknown codon"
+    return result
+ 
+ 
+def RNA_DNA(string):
+    result = ''
+    for character in string:
+        if character == 'A' or character == 'a':
+            result = result + 'T'
+        elif character == 'U' or character == 'u':
+            result = result + 'A'
+        elif character == 'G' or character == 'g':
+            result = result + 'C'
+        elif character == 'C' or character == 'c':
+            result = result + 'G'
+        else:
+            return "error, unknown codon"
+    return result
+ 
+ 
+def DNA_protein(string):
+    Codons = {'ACC': 'Thr', 'ATG': 'Start, Met', 'AAG': 'Lys', 'AAA': 'Lys', 'ATC': 'Ile', 'AAC': 'Asn', 'ATA': 'Ile',
+    'AGG': 'Arg', 'CCT': 'Pro', 'CTC': 'Leu', 'AGC': 'Ser', 'ACA': 'Thr', 'CTT': 'Leu', 'CAT': 'His', 'AAT': 'Asn',
+    'CTG': 'Leu', 'CTA': 'Leu', 'ACT': 'Thr', 'CAC': 'His', 'ACG': 'Thr', 'TAG': 'Stop', 'AGT': 'Ser', 'CCA': 'Pro',
+    'CAA': 'Gln', 'CCC': 'Pro', 'TAT': 'Tyr', 'GGT': 'Gly', 'TGT': 'Cys', 'CGA': 'Arg', 'CAG': 'Gln', 'CGC': 'Arg',
+    'GAT': 'Asp', 'CGG': 'Arg', 'TTT': 'Phe', 'TGC': 'Cys', 'GGG': 'Gly', 'TGA': 'Stop', 'GGA': 'Gly', 'TAA': 'Stop',
+    'GGC': 'Gly', 'TAC': 'Tyr', 'TTC': 'Phe', 'TTA': 'Leu', 'AGA': 'Arg', 'GAC': 'Asp', 'CGT': 'Arg', 'GAA': 'Glu',
+    'TGG': 'Trp', 'GCA': 'Ala', 'GTA': 'Val', 'CCG': 'Pro', 'GTC': 'Val', 'GCG': 'Ala', 'GTG': 'Val', 'GAG': 'Glu', 
+    'GTT': 'Val', 'GCT': 'Ala','GCC': 'Ala', 'TTG': 'Leu'}
+    result = []
+    string = string[string.find('ATG'):]
+    list = [string[i:i+3] for i in xrange(0,len(string), 3)]
+    for element in list:
+        if element in Codons:
+            result.append(Codons[element])
+            if Codons[element] == 'Stop':
+                break
+    return result
