@@ -1,0 +1,60 @@
+#Bubble Sort:
+def sort_2(list):
+    llen = len(list) # length of list
+    for k in range(0, llen): # k takes values from 0 through (llen - 1)
+        for i in range(k+1,llen): # i takes values from (k+1) through (llen - 1)
+            if list[i]<list[k]: # then we swap the values in positions i and k in list
+                tmp=list[k]
+                list[k]=list[i]
+                list[i]=tmp     
+    return list
+ 
+#Merging of two sorted lists:
+def merger(a, b): #assuming both lists are sorted
+    c = []
+    x, y = 0, 0
+    while True:
+        if a[x] < b[y]:
+            c.append(a[x])
+            x = x + 1
+            if x >= len(a):
+                c = c + b[y:]
+                return c
+        else:
+            c.append(b[y])
+            y = y + 1
+            if y >= len(b):
+                c = c + a[x:]
+                return c
+ 
+#Merge sort
+def sort(list):
+    if len(list) <= 2:
+        if len(list) == 2:
+            if list[0] < list[1] :
+                return [list[0],list[1]]
+            else:
+                return [list[1],list[0]]
+        else:
+            return list
+    return merger( sort(list[:(len(list) + 1)/2]), sort(list[(len(list) + 1)/2:]) )
+ 
+#Recursive implementation of program for computing nth Fibonacci number
+# n has to be >= 0; it is possible to modify code below to ensure this condition
+def f(n):
+    if n <= 1: # base cases f(0) = 0 and f(1) = 1
+        return n
+    else:
+        return f(n - 1) + f(n - 2)
+ 
+#Iterative implementation of program for computing nth Fibonacci number
+# n has to be >= 0; it is possible to modify code below to ensure this condition
+def fib(n):
+    if n < 2: # base cases fib(0) = 0 and fib(1) = 1
+        return n
+    else:
+        list=[0]*(n+1) # creates a list of size (n+1) and initializes to 0
+        list[1]=1 # after this assignment, list[0]=0 and list[1]=1, i.e. correct base cases
+        for i in range(2,n+1): # i takes on values from 2 through n
+            list[i] = list[i-1] + list[i-2]
+        return list[n]
