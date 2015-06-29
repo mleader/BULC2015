@@ -1,0 +1,21 @@
+def combinations(len_string1, len_string2):
+    import math
+    string1, string2 = len_string1 + 1, len_string2 + 1
+    def matrix_generator(string1, string2):
+        matrix = []
+        list1 = []
+        for uneeded in range(0, string1):
+            list1.append(1)
+        matrix.append(list1)
+        for uneeded in range(0, string2-1):
+            matrix.append([1])
+        return matrix
+    matrix = matrix_generator(string1, string2)
+#above line makes an empty matrix with first row/ column filled with 1s
+    for y in range(1, string2):
+        for x in range(1, string1):
+            matrix[y].append( matrix[y-1][x] + matrix[y][x-1] + matrix[y-1][x-1] )
+        #print matrix[y-1]
+    #print matrix[string2-1]
+    print matrix[string2-1][string1-1]
+    return '~10^' + str(int(math.log10(matrix[string2-1][string1-1])))
