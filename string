@@ -1,0 +1,32 @@
+def longest_substring(string1, string2):
+    j, i = 0, 0 # i = x coordinate / column, j = y coordinate / row
+    def M(i,j, grid): # M(i,j) makes the matrix at point i,j
+        if i != 0 and j != 0:
+            if string1[i] == string2[j]:
+                return grid[j-1][i-1] + 1
+            else:
+                return 0
+        else:
+            if string1[i] == string2[j]:
+                return 1
+            else:
+                return 0
+    matrix = []
+    for uneeded in range(0, len(string2)):
+        matrix.append([])
+    for j in range(0, len(string2)):
+        for i in range(0, len(string1)):
+            matrix[j].append(M(i,j,matrix))
+        print matrix[j]
+    max = 0
+    x, y = 0, 0
+    for j in range(0, len(string2)):
+        for i in range(0, len(string1)):
+            if matrix[j][i] > max:
+                max = matrix[j][i]
+                x = i
+                y = j
+    print 'length of largest common substring = ' + str(max + 1)
+    print 'x = ' + str(x)
+    print 'y = ' + str(y)
+    return string1[x + 1 - max : x + 1]
